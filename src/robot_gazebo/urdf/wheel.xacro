@@ -7,7 +7,7 @@
   <xacro:property name="WHEEL_VISUAL_ENABLE" value="true" />
   
   <!-- ============================================== -->
-  <xacro:macro name="mecanum_wheel" params="name x y">
+  <xacro:macro name="mecanum_wheel" params="name x y fdir">
     <link name="${name}_link">
       
       <xacro:if value="${WHEEL_VISUAL_ENABLE}">
@@ -39,8 +39,9 @@
     </joint>
 
     <gazebo reference="${name}_link">
-      <mu1>10.0</mu1> 
-      <mu2>10.0</mu2>
+      <mu1>0.001</mu1> 
+      <mu2>0.001</mu2>
+      <fdir1>${fdir}</fdir1>
       <kp>1000000000.0</kp>
       <kd>100000.0</kd>      
       <minDepth>0.0001</minDepth>
@@ -48,9 +49,12 @@
   </xacro:macro>
 
   <!-- ============================================== -->
-  <xacro:mecanum_wheel name="front_left"  x="0.08"  y="0.09"/>
-  <xacro:mecanum_wheel name="front_right" x="0.08"  y="-0.09"/>
-  <xacro:mecanum_wheel name="rear_left"   x="-0.08" y="0.09"/>
-  <xacro:mecanum_wheel name="rear_right"  x="-0.08" y="-0.09"/>
+  <!-- Mecanum Wheel Orientation (X configuration) -->
+  <!-- FL: / (1, -1, 0)  FR: \ (1, 1, 0) -->
+  <!-- RL: \ (1, 1, 0)   RR: / (1, -1, 0) -->
+  <xacro:mecanum_wheel name="front_left"  x="0.08"  y="0.09"  fdir="0.707 -0.707 0"/>
+  <xacro:mecanum_wheel name="front_right" x="0.08"  y="-0.09" fdir="0.707 0.707 0"/>
+  <xacro:mecanum_wheel name="rear_left"   x="-0.08" y="0.09"  fdir="0.707 0.707 0"/>
+  <xacro:mecanum_wheel name="rear_right"  x="-0.08" y="-0.09" fdir="0.707 -0.707 0"/>
 
 </robot>

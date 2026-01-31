@@ -69,6 +69,11 @@ class JoystickController(Node):
             twist.linear.y = val_map(axes['lx'], -1, 1, -self.max_linear, self.max_linear) 
             twist.linear.x = val_map(axes['ly'], -1, 1, -self.max_linear, self.max_linear)
             twist.angular.z = val_map(axes['rx'], -1, 1, -self.max_angular, self.max_angular)
+            
+            # Debug logging
+            # if abs(twist.linear.x) > 0.01 or abs(twist.linear.y) > 0.01 or abs(twist.angular.z) > 0.01:
+            #     self.get_logger().info(f'Twist -> Lx: {twist.linear.x:.2f}, Ly: {twist.linear.y:.2f}, Az: {twist.angular.z:.2f}')
+
         elif 'Acker' in self.machine:
             twist.linear.x = val_map(axes['ly'], -1, 1, -self.max_linear, self.max_linear)
             steering_angle = val_map(axes['rx'], -1, 1, -math.radians(350/2000*180), math.radians(350/2000*180))

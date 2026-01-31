@@ -63,7 +63,7 @@ ros2 launch peripherals joystick_teleop.launch.py
 
 ## Key Features & Fixes
 
-- **Simulation**: Configured `robot_gazebo` to use `ros_gz_sim` (modern bridge) and corrected plugin names for compatibility.
+- **Simulation**: Configured `robot_gazebo` to use `ros_gz_sim`. Implemented robust holonomic movement using `VelocityControl` plugin and simplified wheel physics (frictionless) for reliable strafing and rotation.
 - **Hardware Interface**: Enabled `gz_ros2_control` for simulated hardware abstraction.
 - **Teleoperation**: Added `joystick_teleop.launch.py` and patched `joystick_control.py` to ensure continuous command publishing (heartbeat).
 - **Visualization**: Fixed camera frame transformation issues in RViz using static publisher updates.

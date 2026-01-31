@@ -39,15 +39,18 @@ def launch_setup(context):
         ' sim_ign:=', sim_ign
     ])
 
+    # Wrap robot_description to prevent YAML parsing errors
+    from launch_ros.parameter_descriptions import ParameterValue
+    
+    robot_description = {'robot_description': ParameterValue(robot_description_content, value_type=str)}
+
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
         parameters=[
-            {
-                'robot_description': robot_description_content,
-                'use_sim_time': use_sim_time
-            }
+            robot_description,
+            {'use_sim_time': use_sim_time}
         ],  
     )
 
@@ -116,12 +119,12 @@ def launch_setup(context):
         robot_state_publisher_node,
 
         # 在 Ignition 实体生成后启动控制器
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=ignition_spawn_entity,
-                on_exit=[joint_state_broadcaster_spawner],
-            )
-        ),
+        # RegisterEventHandler(
+        #     event_handler=OnProcessExit(
+        #         target_action=ignition_spawn_entity,
+        #         on_exit=[joint_state_broadcaster_spawner],
+        #     )
+        # ),
         ignition_spawn_entity,
     ]
 
