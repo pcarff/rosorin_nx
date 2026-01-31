@@ -12,7 +12,7 @@ import xacro
 
 def launch_setup(context):
     use_sim_time = LaunchConfiguration('use_sim_time', default='true').perform(context)
-    world_name = LaunchConfiguration('world_name', default='robocup_home').perform(context)
+    world_name = LaunchConfiguration('world_name', default='depot').perform(context)
     nav = LaunchConfiguration('nav', default='false').perform(context)
     moveit_unite = LaunchConfiguration('moveit_unite', default='false').perform(context)
 

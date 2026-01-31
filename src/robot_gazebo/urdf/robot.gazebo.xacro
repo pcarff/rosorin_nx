@@ -28,6 +28,17 @@
         <!-- imu -->
         <plugin filename="ignition-gazebo-imu-system" name="ignition::gazebo::systems::Imu"></plugin>
 
+        <!-- Odometry Publisher -->
+        <plugin
+            filename="ignition-gazebo-odometry-publisher-system"
+            name="ignition::gazebo::systems::OdometryPublisher">
+            <odom_publish_frequency>50</odom_publish_frequency>
+            <odom_topic>/odom</odom_topic>
+            <odom_frame>odom</odom_frame>
+            <robot_base_frame>base_footprint</robot_base_frame>
+            <tf_topic>/odom/tf</tf_topic>
+        </plugin>
+
         <!-- Planar Move Plugin: Directly controls base velocity for holonomic movement, bypassing wheel physics -->
         <!-- Velocity Control Plugin: Directly controls base velocity for holonomic movement -->
         <plugin filename="libignition-gazebo-velocity-control-system.so" name="ignition::gazebo::systems::VelocityControl">
