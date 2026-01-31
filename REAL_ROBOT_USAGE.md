@@ -20,6 +20,8 @@ SSH into the robot (e.g., `ssh ubuntu@<robot_ip>`) and run:
 ```bash
 # 1. Bringup (Hardware Drivers)
 # This launches: Controller, Lidar, Camera, Web Server, App, and Joystick Control
+# First stop the app that is running when the robot boots up
+sudo systemctl stop start_app_node.service
 ros2 launch bringup bringup.launch.py
 ```
 
