@@ -30,6 +30,8 @@ setup(
             'ar_app = app.ar_app:main',
             'hand_trajectory = app.hand_trajectory_node:main',
             'hand_gesture = app.hand_gesture:main',
+            'follow_cat = app.follow_cat:main',
+            'follow_red_ball = app.follow_red_ball:main',
         ],
     },
 )
